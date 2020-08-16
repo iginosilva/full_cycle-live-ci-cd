@@ -8,9 +8,11 @@ steps:
   - name: 'docker'
     args: ['exec', 'goapp', 'go', 'test']
 
+  - name: 'docker'
+    args: ['push', 'iginosilva/full_cycle_go:latest']
 
-  # - name: 'docker'
-  #   args: ['push', 'iginosilva/full_cycle_go:latest']
+  - name: 'docker'
+    args: ['push', 'iginosilva/full_cycle_go:$SHORT_SHA']
 
-  # - name: 'docker'
-  #   args: ['push', 'iginosilva/full_cycle_go:$SHORT_SHA']
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['run', 'deploy', 'go-cloudrun', '--image', 'iginosilva/full_cycle_go:$SHORT_SHA', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
