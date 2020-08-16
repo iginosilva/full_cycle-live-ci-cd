@@ -1,0 +1,15 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'iginosilva/full_cycle_go:latest', '-t', 'iginosilva/full_cycle_go:$SHORT_SHA', '.']
+
+  - name: 'docker'
+    args: ['run', '-d', '--name', 'goapp', 'iginosilva/full_cycle_go:latest']
+
+  - name: 'docker'
+    args: ['exec', 'goapp', 'go', 'test']
+
+  # - name: 'docker'
+  #   args: ['push', 'iginosilva/full_cycle_go:latest']
+
+  # - name: 'docker'
+  #   args: ['push', 'iginosilva/full_cycle_go:$SHORT_SHA']
