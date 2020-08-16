@@ -8,6 +8,7 @@ steps:
   - name: 'docker'
     args: ['exec', 'goapp', 'go', 'test']
 
+
   # - name: 'docker'
   #   args: ['push', 'iginosilva/full_cycle_go:latest']
 
